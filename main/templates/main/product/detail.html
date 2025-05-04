@@ -21,7 +21,11 @@
                     <p>{{ product.description|linebreaks }}</p>
                 </div>
                 <div class="mt-4">
-                    <button class='btn btn-primary btn-lg'>Добавить в корзину</button>
+                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <button type="submit" class='btn btn-primary btn-lg'>Добавить в корзину</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -40,7 +44,7 @@
                                 <h5 class="card-title">
                                     <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                                 </h5>
-                                <p class="card-text">{{ product.price }} руб.</p>
+                                <p class="card-text">{{ product.price }} грн.</p>
                             </div>
                         </div>
                     </div>
